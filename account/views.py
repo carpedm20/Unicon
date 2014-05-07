@@ -14,7 +14,6 @@ import random
 from .forms import AccountCreateForm, AccountAuthForm
 from core.views import index
 from utils.func import *
-from utils.say import *
 
 reverse_lazy = lambda name=None, *args: lazy(reverse, str)(name, args=args)
 
@@ -35,12 +34,9 @@ def view_profile(request): #, search_query=""):
         student = None
         pass
 
-    s = random.choice(say.keys())
-
     return render(request,
                   template,
-                  {'student' : student,
-                   'say' : say[s] + " : " + s,})
+                  {'student' : student,})
 
 
 ########################
@@ -68,7 +64,7 @@ def follow(request):
 
 def sign_in(request):
     form = AccountAuthForm(data=request.POST)
-    template = 'account/sign_in.html'
+    template = 'sign_in.html'
 
     if request.method == 'POST':
         if form.is_valid():
@@ -89,11 +85,9 @@ def sign_in(request):
 
 def sign_in_view(request):
     form = AccountAuthForm(request.POST or None)
-    template = 'account/sign_in.html'
+    template = 'sign_in.html'
 
-    s = random.choice(say.keys())
-
-    return render(request, template, {'form': form, 'say' : say[s] + " : " + s})
+    return render(request, template, {'form': form, })
     
 
 ########################

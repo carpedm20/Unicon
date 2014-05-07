@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     #'south',
     'jfu',
 
-    'picture',
+    'core',
     'account',
 )
 
